@@ -1,0 +1,28 @@
+shell->cmdline is filled with cmd line using readline
+
+1) Lexer
+
+- insert_spaces: insert spaces between the tokens (echo>infile becomes echo > infile)
+
+- insert_spaces_quotes(t_mini *shell): insert space after even insert_spaces_quotes
+
+- count_tokens: counts the nb of tokens
+
+- init_lex: will init struct t_lex :
+
+typedef struct s_lex
+{
+	int				i;
+	int				nb_expansions;
+	char			*word;
+	t_token			token;
+	struct s_lex	*next;
+}	t_lex;
+malloc the linked list thanks to nb_token & initiates the elements of the struct
+
+- assign_word(shell): fills word in lex structure.
+  with get_token : big malloc with size of cmdline + 1 for each token. Fills with the token, spliting with spaces.
+  Special function to handle spaces between double quote: they should not generate a new token.
+
+
+- assign_token : if it is | token pipe, same for < << > >>, if not token WORD.
