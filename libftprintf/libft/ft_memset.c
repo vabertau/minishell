@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_input.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 16:55:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/11 09:46:56 by vabertau         ###   ########.fr       */
+/*   Created: 2023/09/20 11:57:10 by vabertau          #+#    #+#             */
+/*   Updated: 2023/11/15 19:49:20 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	get_input(t_data *data)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	data->cmdline = readline("minishell\% ");
-	lexer(data);
+	size_t	i;
+
+	i = 0;
+	if (!b && len == 0)
+		return (NULL);
+	while (i < len)
+	{
+		((unsigned char *)b)[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
 }
+/*
+#include <stdio.h>
+int	main(void)
+{
+	char str[10];
+	printf("result = %s\n", (char*)ft_memset(str, 'a', 4));
+}*/

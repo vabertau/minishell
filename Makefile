@@ -4,19 +4,28 @@ CC = cc $(FLAGS) -g
 
 FLAGS = -Wall -Werror -Wextra
 
-FILENAMES = main.c get_input.c lexer.c nb_tokens.c
+FILENAMES = main.c get_input.c lexer.c nb_tokens.c spaces_bet_tokens.c
 
 SRCS = $(addprefix srcs/, $(FILENAMES))
 
 OBJS = $(SRCS:.c=.o)
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) -lreadline -o $(NAME)
+FT_PRINTF = libftprintf/libftprintf.a
+
+FT_PRINTF_PATH = libftprintf
+
+$(NAME): $(FT_PRINTF) $(OBJS)
+	$(CC) $(OBJS) $(FT_PRINTF) -lreadline -o $(NAME)
+
+$(FT_PRINTF):
+	make -C $(FT_PRINTF_PATH) all
 
 clean:
+	make -C $(FT_PRINTF_PATH) clean
 	rm -f $(OBJS)
 
 fclean: clean
+	make -C $(FT_PRINTF_PATH) fclean
 	rm -f $(NAME)
 
 re: fclean all

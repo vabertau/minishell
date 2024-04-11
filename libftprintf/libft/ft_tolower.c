@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_input.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vabertau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 16:55:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/11 09:46:56 by vabertau         ###   ########.fr       */
+/*   Created: 2023/11/07 14:50:33 by vabertau          #+#    #+#             */
+/*   Updated: 2023/11/08 14:50:40 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-void	get_input(t_data *data)
+int	ft_tolower(int c)
 {
-	data->cmdline = readline("minishell\% ");
-	lexer(data);
+	if (c >= 65 && c <= 90)
+		c += 32;
+	return (c);
 }

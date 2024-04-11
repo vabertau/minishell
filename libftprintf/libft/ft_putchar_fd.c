@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_input.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vabertau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 16:55:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/11 09:46:56 by vabertau         ###   ########.fr       */
+/*   Created: 2023/11/15 18:37:11 by vabertau          #+#    #+#             */
+/*   Updated: 2023/11/15 19:00:17 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
+#include <unistd.h>
 
-void	get_input(t_data *data)
+void	ft_putchar_fd(char c, int fd)
 {
-	data->cmdline = readline("minishell\% ");
-	lexer(data);
+	write (fd, &c, 1);
 }
+/*
+int	main(void)
+{
+	char *str = "Hello, world!";
+	int fd = 1;
+	int len = ft_strlen(str);
+
+	write(fd, str, len);
+	return 0;
+}*/

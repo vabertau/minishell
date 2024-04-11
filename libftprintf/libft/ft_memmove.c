@@ -1,19 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_input.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 16:55:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/11 09:46:56 by vabertau         ###   ########.fr       */
+/*   Created: 2023/09/21 12:02:43 by vabertau          #+#    #+#             */
+/*   Updated: 2023/11/15 20:06:51 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	get_input(t_data *data)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	data->cmdline = readline("minishell\% ");
-	lexer(data);
+	size_t	i;
+
+	i = 0;
+	if (!dst && !src)
+		return (NULL);
+	if (dst <= src)
+	{
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (len > 0)
+		{
+			((char *)dst)[len - 1] = ((char *)src)[len - 1];
+			len--;
+		}
+	}
+	return (dst);
 }

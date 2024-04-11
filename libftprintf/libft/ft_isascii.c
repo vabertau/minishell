@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_input.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 16:55:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/11 09:46:56 by vabertau         ###   ########.fr       */
+/*   Created: 2023/09/19 15:19:56 by vabertau          #+#    #+#             */
+/*   Updated: 2023/09/19 15:30:12 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-void	get_input(t_data *data)
+int	ft_isascii(int c)
 {
-	data->cmdline = readline("minishell\% ");
-	lexer(data);
+	if ((c >= 0) && (c <= 127))
+	{
+		return (1);
+	}
+	return (0);
 }
+
+/*
+#include <stdio.h>
+int     main(void)
+{
+        printf("result = %i\n", ft_isascii(127));
+}*/
