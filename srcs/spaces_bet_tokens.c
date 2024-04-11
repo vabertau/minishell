@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:48:08 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/11 11:40:03 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:19:38 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	fixed_cmdline_len(char *cmdline)
 	}
 	return (ret + ft_strlen(cmdline));
 }
-
+/*
 ft_strcpy_i(char *dest, char *src, int i)
 {
 	int	j;
@@ -59,26 +59,61 @@ ft_strcpy_i(char *dest, char *src, int i)
 		j++;
 	}
 	dest[j] = '\0';
-}
+}*/
 
-void	ft_strcpy_adds(char *ret, char *cmdline)
+char	*ft_strcpy_adds(char *cmdline)
 {
 	int	i;
+	bool	sp_bf;
+	char	*tmp;
+	char	*ret;
 
 	i = 0;
-	while (cmdline[i])
+	ret = malloc(sizeof(char) * (fixed_cmdline_len(cmdline) + 1));
+	//if (ret == NULL)
+	//	exit_free(data, -1);
+	ft_strlcpy(ret, cmdline, ft_strlen(cmdline) + 1);
+	//printf("ret = %s\n", ret);
+	while (ret[i])
 	{
-		i +=
+		//i += skip_sq(&(ret[i]));
+		if (ret[i] == '<' || ret[i] == '>' || ret[i] == '|')
+		{
+			tmp = ft_strdup(ret);
+			if (i > 0 && ret[i - 1] != '<' && ret[i - 1] != '>' && ret[i - 1] != '|' && ret[i - 1] != ' ')
+			{
+				//if (tmp)
+				//	exit_free(data, -1);
+				ft_strlcpy(&(ret[i + 1]), &(tmp[i]), ft_strlen(&(ret[i])) + 1);
+				//free(tmp);
+				ret[i] = ' ';
+				sp_bf = 1;
+			}
+			else
+				sp_bf = 0;
+			if (tmp[i + 1] != '<' &&  tmp[i + 1] != '>' && tmp[i + 1] != '|' && tmp[i + 1] != ' ')
+			{
+				if (sp_bf == 1)
+				{
+					ft_strlcpy(&(ret[i + 3]), &(tmp[i + 1]), ft_strlen(&tmp[i + 1]) + 1);
+					ret[i + 2] = ' ';
+				}
+				else
+				{
+					ft_strlcpy(&(ret[i + 2]), &(tmp[i + 1]), ft_strlen(&(tmp[i + 1])) + 1);
+					ret[i + 1] = ' ';
+				}
+			}
+			free(tmp);
+		}
+		i++;
 	}
+	free (cmdline);
+	return (ret);
 }
 
 int	spaces_bet_tokens(t_data *data)
 {
-	char	*ret;
-
-	ret = malloc(sizeof(char) * (fixed_cmdline_len(data->cmdline) + 1));
-	//if (ret == NULL)
-	//	exit_free(data, -1);
-	ft_strcpy_adds(ret, data->cmdline);
+	data->cmdline = ft_strcpy_adds(data->cmdline);
 	return (0);
 }
