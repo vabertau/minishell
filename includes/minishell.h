@@ -23,3 +23,7 @@ void	get_input(t_data *data);
 void	lexer(t_data *data);
 void	nb_tokens(t_data *data);
 int		spaces_bet_tokens(t_data *data);
+
+// ====== EXIT ======
+
+void	exit_free(t_data *data, int exit_code);

@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:54:44 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/11 15:00:46 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:05:46 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ int	main(int argc, char **argv, char **envp)
 		spaces_bet_tokens(&data);
 		printf("cmdline = %s\n", data.cmdline);
 	//}
+	exit_free(&data, 0); //tmp
 }
