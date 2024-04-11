@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:48:08 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/11 14:19:38 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:33:37 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ static int	skip_sq(char *cmdline)
 	else
 		i++;
 	while (cmdline[i] && cmdline[i] != '\'')
+		i++;
+	return (i);
+}
+
+static int	skip_dq(char *cmdline)
+{
+	int	i;
+
+	i = 0;
+	if (cmdline[i] != '\"')
+		return (0);
+	else
+		i++;
+	while (cmdline[i] && cmdline[i] != '\"')
 		i++;
 	return (i);
 }
@@ -73,10 +87,10 @@ char	*ft_strcpy_adds(char *cmdline)
 	//if (ret == NULL)
 	//	exit_free(data, -1);
 	ft_strlcpy(ret, cmdline, ft_strlen(cmdline) + 1);
-	//printf("ret = %s\n", ret);
 	while (ret[i])
 	{
-		//i += skip_sq(&(ret[i]));
+		i += skip_sq(&(ret[i]));
+		i += skip_dq(&(ret[i]));
 		if (ret[i] == '<' || ret[i] == '>' || ret[i] == '|')
 		{
 			tmp = ft_strdup(ret);
