@@ -5,8 +5,9 @@ shell->cmdline is filled with cmd line using readline
 - insert_spaces: insert spaces between the tokens (echo>infile becomes echo > infile)
 
 - insert_spaces_quotes(t_mini *shell): insert space after even insert_spaces_quotes
+USELESS ? Creates errors
 
-- count_tokens: counts the nb of tokens
+- count_tokens: counts the nb of tokens by splitting with spaces, skipping quotes
 
 - init_lex: will init struct t_lex :
 

@@ -1,21 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   skip_q.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 17:29:29 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/12 15:48:12 by vabertau         ###   ########.fr       */
+/*   Created: 2024/04/12 14:05:27 by vabertau          #+#    #+#             */
+/*   Updated: 2024/04/12 14:10:40 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	lexer(t_data *data)
+/*if cmdline[i] is a quote, skips all until matching quote
+*/
+int	skip_sq(char *cmdline)
 {
-	spaces_bet_tokens(data);
-	nb_tokens(data);
-	malloc_tokens(data);
-	fill_tokens(data);
+	int	i;
+
+	i = 0;
+	if (cmdline[i] != '\'')
+		return (0);
+	else
+		i++;
+	while (cmdline[i] && cmdline[i] != '\'')
+		i++;
+	return (i);
+}
+
+/*if cmdline[i] is a quote, skips all until matching quote
+*/
+int	skip_dq(char *cmdline)
+{
+	int	i;
+
+	i = 0;
+	if (cmdline[i] != '\"')
+		return (0);
+	else
+		i++;
+	while (cmdline[i] && cmdline[i] != '\"')
+		i++;
+	return (i);
 }
