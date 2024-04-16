@@ -6,6 +6,16 @@
 #include <readline/history.h>
 # include "../libftprintf/ft_printf.h"
 
+typedef enum s_type{
+	WORD,
+	PIPE,
+	RIGHT1,
+	RIGHT2,
+	LEFT1,
+	LEFT2,
+	DQUOTE,
+}	t_type;
+
 typedef struct s_token{
 	int					i;
 	char				*word;
@@ -18,6 +28,7 @@ typedef struct s_data{
 	int		nb_sq;
 	int		nb_dq;
 	t_token	*token;
+	t_type type;
 }				t_data;
 
 // ====== READLINE ======
@@ -37,6 +48,9 @@ int		skip_sq(char *cmdline);
 int		skip_dq(char *cmdline);
 void	malloc_tokens(t_data *data);
 void	fill_tokens(t_data *data);
+char	**ft_quotesplit(t_data *data, char const *s, char c);
+void    copy_bet_sq(int *i, int *j, const char *s, char *tmp);
+void    copy_bet_dq(int *i, int *j, const char *s, char *tmp);
 
 // ====== EXIT ======
 

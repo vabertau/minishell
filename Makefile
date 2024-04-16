@@ -1,10 +1,10 @@
 NAME = minishell
 
-CC = cc $(FLAGS) -g
+CC = cc $(FLAGS) -g -fsanitize=address
 
 FLAGS = -Wall -Werror -Wextra
 
-FILENAMES = main.c get_input.c lexer.c nb_tokens.c spaces_bet_tokens.c exit_free.c skip_q.c malloc_tokens.c init_data.c fill_tokens.c
+FILENAMES = main.c get_input.c lexer.c nb_tokens.c spaces_bet_tokens.c exit_free.c skip_q.c malloc_tokens.c init_data.c fill_tokens.c ft_quotesplit.c copy_bet_q.c
 
 SRCS = $(addprefix srcs/, $(FILENAMES))
 

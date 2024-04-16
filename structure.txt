@@ -23,7 +23,16 @@ malloc the linked list thanks to nb_token & initiates the elements of the struct
 
 - assign_word(shell): fills word in lex structure.
   with get_token : big malloc with size of cmdline + 1 for each token. Fills with the token, spliting with spaces.
-  Special function to handle spaces between double quote: they should not generate a new token.
+  Special function to handle spaces between double quote: they should not generate a new token : modified ft_split that doesn't split 
+  between quotes.
 
 
 - assign_token : if it is | token pipe, same for < << > >>, if not token WORD.
+
+------------
+
+Unclosed quotes à gérer
+
+Fixs : 
+
+mallocs de tout cmdline trop grand dans get_token -> réduit aux mallocs nécessaires
