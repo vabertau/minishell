@@ -31,7 +31,7 @@ malloc the linked list thanks to nb_token & initiates the elements of the struct
 
 ------------
 
-Unclosed quotes à gérer
+Unclosed quotes à gérer: dans toutes les fonctions de passage/gestion de quote : ajouter fonction ft_strchr de quote de fermeture. N'effectuer ces fonctions que si quopte de fermeture.
 
 Fixs : 
 
