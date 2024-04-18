@@ -41,6 +41,9 @@ fix to do on test"test test" counting 2 tokens instead of 1 -> l erruer vient du
 que nb token ancienne fonction ne compte pas comme substr quote : refaire nb token
 comme substr quote
 
+info que single quote ou double quote sera probablement a garder : simple juste modifier ft_quotesplit et
+transformer data->is_bq en int et non bool avec valeur 0 1 2 pour pas bq, bsq, bdq.
+
 Fixs :
 
 mallocs de tout cmdline trop grand dans get_token -> réduit aux mallocs nécessaires

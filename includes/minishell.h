@@ -19,6 +19,7 @@ typedef enum s_type{
 typedef struct s_token{
 	int					i;
 	char				*word;
+	t_type				type;
 	struct s_token		*next;
 }				t_token;
 
@@ -52,6 +53,7 @@ void	fill_tokens(t_data *data);
 char	**ft_quotesplit(t_data *data, char const *s);
 void    copy_bet_sq(int *i, int *j, const char *s, char *tmp);
 void    copy_bet_dq(int *i, int *j, const char *s, char *tmp);
+void    fill_types(t_data *data);
 
 // ====== EXIT ======
 
