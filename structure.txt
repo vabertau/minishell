@@ -49,3 +49,16 @@ Fixs :
 mallocs de tout cmdline trop grand dans get_token -> réduit aux mallocs nécessaires
 
 Ajout d espace seuleument apres double quote erreur sur 'test'test
+
+2) Parser
+
+The parser will store into a structure the commands to execute.
+
+count_pipes_and_commands: counts the number of pipes using types
+
+init_cmd; is malloc and init commands structure with the nb of commands.
+
+create_cmd: fills cmd structure
+In that function:
+
+	get_cmdlines_in_nodes
