@@ -1,6 +1,6 @@
 NAME = minishell
 
-CC = cc $(FLAGS) -g -fsanitize=address
+CC = cc $(FLAGS) -g
 
 FLAGS = -Wall -Werror -Wextra
 

@@ -23,7 +23,7 @@ malloc the linked list thanks to nb_token & initiates the elements of the struct
 
 - assign_word(shell): fills word in lex structure.
   with get_token : big malloc with size of cmdline + 1 for each token. Fills with the token, spliting with spaces.
-  Special function to handle spaces between double quote: they should not generate a new token : modified ft_split that doesn't split 
+  Special function to handle spaces between double quote: they should not generate a new token : modified ft_split that doesn't split
   between quotes.
 
 
@@ -33,6 +33,8 @@ malloc the linked list thanks to nb_token & initiates the elements of the struct
 
 Unclosed quotes à gérer: dans toutes les fonctions de passage/gestion de quote : ajouter fonction ft_strchr de quote de fermeture. N'effectuer ces fonctions que si quopte de fermeture.
 
-Fixs : 
+Fixs :
 
 mallocs de tout cmdline trop grand dans get_token -> réduit aux mallocs nécessaires
+
+Ajout d espace seuleument apres double quote erreur sur 'test'test
