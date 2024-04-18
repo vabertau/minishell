@@ -22,9 +22,13 @@ typedef struct s_lex
 malloc the linked list thanks to nb_token & initiates the elements of the struct
 
 - assign_word(shell): fills word in lex structure.
-  with get_token : big malloc with size of cmdline + 1 for each token. Fills with the token, spliting with spaces.
-  Special function to handle spaces between double quote: they should not generate a new token : modified ft_split that doesn't split
-  between quotes.
+  with get_token : big malloc with size of cmdline + 1 for each token. Fills with the token, spliting with spaces, skipping finished quotes.
+
+  ft_quotesplit is ike ft_split with ' ' but it also skips finished quotes, and it doesn't copy the quotes when they are finihed as we
+  only need what is inside of them.
+
+  As quotes are deleted by ft_quotesplit, the function keeps the info thar the token was betwen quotes in booleans data->is_bq[i].
+  That int* will later be used by fill types to fill type DQUOTE if data->is_bq[i] == 1.
 
 
 - assign_token : if it is | token pipe, same for < << > >>, if not token WORD.
