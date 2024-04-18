@@ -29,6 +29,7 @@ typedef struct s_data{
 	int		nb_dq;
 	t_token	*token;
 	t_type type;
+	bool	is_bq;
 }				t_data;
 
 // ====== READLINE ======

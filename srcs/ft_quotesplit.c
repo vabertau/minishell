@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:28:26 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/16 16:50:54 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:01:05 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,15 @@ static	char	*ft_substr_quotes(t_data *data, char const *s, int *i, char c)
 	while (s[*i] && s[*i] != c)
 	{
 		if ((s[*i] == '\'') && ft_strchr(&(s[(*i) + 1]), '\''))
-            copy_bet_sq(i, &j, s, tmp);
+		{
+			copy_bet_sq(i, &j, s, tmp);
+			data->is_bq = 1;
+		}
 		else if ((s[*i] == '\"') && ft_strchr(&(s[(*i) + 1]), '\"'))
-            copy_bet_dq(i, &j, s, tmp);
+        {
+			copy_bet_dq(i, &j, s, tmp);
+			data->is_bq = 1;
+		}
 		else
 		{
 			tmp[j] = s[*i];

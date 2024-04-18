@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:42:01 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/18 14:49:45 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:55:26 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static int	skip_ns(char *cmdline)
 
 /*counts the nb of tokens that are going to be filled afterwards. By spliting with spaces,
 skipping quotes.
+
+ft_strchr is used to search for matching quote and avoid errors on nb_token when quotes are unclosed
 */
 void	nb_tokens(t_data *data)
 {
