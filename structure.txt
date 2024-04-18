@@ -31,7 +31,11 @@ malloc the linked list thanks to nb_token & initiates the elements of the struct
 
 ------------
 
-Unclosed quotes à gérer: dans toutes les fonctions de passage/gestion de quote : ajouter fonction ft_strchr de quote de fermeture. N'effectuer ces fonctions que si quopte de fermeture.
+OK Unclosed quotes à gérer: dans toutes les fonctions de passage/gestion de quote : ajouter fonction ft_strchr de quote de fermeture. N'effectuer ces fonctions que si quopte de fermeture.
+
+fix to do on test"test test" counting 2 tokens instead of 1 -> l erruer vient du fait
+que nb token ancienne fonction ne compte pas comme substr quote : refaire nb token
+comme substr quote
 
 Fixs :
 

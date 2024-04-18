@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:14 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/16 15:10:49 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:09:35 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	fill_tokens(t_data *data)
 
 	i = 0;
 	token = data->token;
-	tmp = ft_quotesplit(data, data->cmdline, ' ');
+	tmp = ft_quotesplit(data, data->cmdline);
 	if (tmp == NULL)
 			exit_free(data, -1);
 	i = 0;

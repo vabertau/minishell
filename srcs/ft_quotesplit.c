@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:28:26 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/18 15:01:05 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:10:12 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,37 +39,41 @@ Starts with too big malloc (ft_strlen(cmdline) + 1 the biggest possible).
 Copies 1 token, stopping at first ' ' that is not between quotes.
 copy_bet_quotes functions copies character between quotes without the quotes SQ TO ADD ??
 In the end resizing the malloc with ft_strdup and freeing tmp which is too big, too avoid unnecessary space use.
+
+data->is_bq is filled to track if it is between closed quotes, as quotes are suppressed we can't track it after
+it is a temporary int *, used later to fill token types = DQUOTE
 */
-static	char	*ft_substr_quotes(t_data *data, char const *s, int *i, char c)
+static	char	*ft_substr_quotes(t_data *data, char const *s, int *i, int j)
 {
 	char	*ret;
 	char	*tmp;
-	int		j;
+	int		k;
 
-	j = 0;
+	k = 0;
 	tmp = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!tmp)
 		exit_free(data, -1);
-	while (s[*i] && s[*i] != c)
+	data->is_bq[j] = 0;
+	while (s[*i] && s[*i] != ' ')
 	{
 		if ((s[*i] == '\'') && ft_strchr(&(s[(*i) + 1]), '\''))
 		{
-			copy_bet_sq(i, &j, s, tmp);
-			data->is_bq = 1;
+			copy_bet_sq(i, &k, s, tmp);
+			data->is_bq[j] = 1;
 		}
 		else if ((s[*i] == '\"') && ft_strchr(&(s[(*i) + 1]), '\"'))
         {
-			copy_bet_dq(i, &j, s, tmp);
-			data->is_bq = 1;
+			copy_bet_dq(i, &k, s, tmp);
+			data->is_bq[j] = 1;
 		}
 		else
 		{
-			tmp[j] = s[*i];
+			tmp[k] = s[*i];
 			(*i)++;
-			j++;
+			k++;
 		}
 	}
-	tmp[j] = '\0';
+	tmp[k] = '\0';
 	ret = ft_strdup(tmp);
 	return (free(tmp), ret);
 }
@@ -82,7 +86,7 @@ static	int	first_nonc(char const *s, char c, int i)
 }
 
 /* Similar to ft_split, but it will not split with c character when inside quotes. */
-char	**ft_quotesplit(t_data *data, char const *s, char c)
+char	**ft_quotesplit(t_data *data, const char *s)
 {
 	char	**ret;
 	int		i;
@@ -92,15 +96,17 @@ char	**ft_quotesplit(t_data *data, char const *s, char c)
 	j = 0;
 	if (!s)
 		return (NULL);
-	ret = malloc(sizeof(char *) * (nb_chains(s, c) + 1));
+	ret = malloc(sizeof(char *) * (nb_chains(s, ' ') + 1));
 	if (!ret)
 		return (NULL);//to mod
+	data->is_bq = malloc(sizeof(int) * (data->nb_tokens + 1)); //added to watch if quote
+	//protect
 	while (s[i])
 	{
-		i = first_nonc(s, c, i);
+		i = first_nonc(s, ' ', i);
 		if (!(s[i]))
 			break ;
-		ret[j] = ft_substr_quotes(data, s, &i, ' ');
+		ret[j] = ft_substr_quotes(data, s, &i, j);
 		if (!ret[j])
 			exit_free(data, -1);
 		j++;

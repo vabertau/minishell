@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:54:44 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/16 17:04:16 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:07:51 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	get_input(&data);
+	//get_input(&data);
+	data.cmdline = ft_strdup("test\"hey test\"");
+	spaces_bet_tokens(&data);
+	nb_tokens(&data);
 	printf("nb tokens = %i\n", data.nb_tokens);
 }
 */
@@ -85,10 +88,12 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	t_data	tmp;
+	int		i;
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
+	i = 0;
 	//while (1)
 	//{
 		init_data(&data);
@@ -105,7 +110,9 @@ int	main(int argc, char **argv, char **envp)
 		while (tmp.token != NULL)
 		{
 			printf("word = %s\n", tmp.token->word);
+			printf("is_bq = %i\n", data.is_bq[i]);
 			tmp.token = tmp.token->next;
+			i++;
 		}
 	//	free_bf_newprompt(&data);
 	//}
@@ -118,15 +125,17 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	t_data	tmp;
+	int		i;
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
+	i = 0;
 	//while (1)
 	//{
 		init_data(&data);
 		//get_input(&data);
-		data.cmdline = ft_strdup("test \"hey test\"");
+		data.cmdline = ft_strdup("test \" hey test\" hey\"");
 		spaces_bet_tokens(&data);
 		nb_tokens(&data);
 		malloc_tokens(&data);
@@ -139,9 +148,13 @@ int	main(int argc, char **argv, char **envp)
 		while (tmp.token != NULL)
 		{
 			printf("word = %s\n", tmp.token->word);
+			printf("is_bq = %i\n", data.is_bq[i]);
 			tmp.token = tmp.token->next;
+			i++;
 		}
 	//	free_bf_newprompt(&data);
 	//}
 	exit_free(&data, 0); //tmp
-}*/
+}
+
+*/
