@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:28:26 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/18 16:10:12 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:14:30 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,12 @@ static	int	first_nonc(char const *s, char c, int i)
 	return (i);
 }
 
-/* Similar to ft_split, but it will not split with c character when inside quotes. */
+/* Similar to ft_split, but it will not split with c character when inside quotes.
+
+As ft_substr_quotes suppresses the quotes, data->is_bq[i] stock the info 1 if
+the token was between quotes, 0 if not. Later in fill-type, that double tab
+will be used to fill token type DQUOTE if data->is_bq[i] == 1
+*/
 char	**ft_quotesplit(t_data *data, const char *s)
 {
 	char	**ret;
