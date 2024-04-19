@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   check_pipe_ext.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 13:33:51 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/19 13:49:52 by vabertau         ###   ########.fr       */
+/*   Created: 2024/04/19 13:42:47 by vabertau          #+#    #+#             */
+/*   Updated: 2024/04/19 13:48:45 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	checks(t_data *data)
+/*
+Checks if the cmdline begins or ends with a pipe and returns parsing error if it is the case
+*/
+void	check_pipe_ext(t_data *data)
 {
-	check_unclosedq(data);
-	check_schar_error(data);
-	check_pipe_ext(data);
+	int	i;
+	char	*cmdline;
+
+	i = 0;
+	cmdline = data->cmdline;
+	while (cmdline[i] && cmdline[i] == ' ')
+		i++;
+	if (cmdline[i] == '|')
+		parsing_error(data);
+	while (cmdline[i])
+		i++;
+	if (i > 0)
+		i--;
+	while (i > 0 && cmdline[i] == ' ')
+		i--;
+	if (i > 0 && cmdline[i] == '|')
+		parsing_error(data);
 }
+

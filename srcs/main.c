@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:54:44 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/19 12:12:23 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:03:37 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ int	main(int argc, char **argv, char **envp)
 */
 // ====== TEST LEXER =========
 
-
+/*
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
@@ -271,4 +271,40 @@ int	main(int argc, char **argv, char **envp)
 	//}
 	exit_free(&data, 0); //tmp
 }
+*/
+// ===== TEST NB_CMD =======
 
+int	main(int argc, char **argv, char **envp)
+{
+	t_data	data;
+	t_data	tmp;
+	t_type	test_type;
+	int		i;
+
+	(void)argc;
+	(void)argv;
+	(void)envp;
+	i = 0;
+	//while (1)
+	//{
+		init_data(&data);
+		get_input(&data);
+		lexer(&data);
+		parser(&data);
+		printf("cmdline = %s\n\n", data.cmdline);
+		printf("nb tokens = %i\n\n", data.nb_tokens);
+		printf("nb_cmd = %i\n\n", data.nb_cmd);
+		tmp = data;
+		test_type = WORD;
+		while (tmp.token != NULL)
+		{
+			printf("word = %s\n", tmp.token->word);
+			printf("type = %u\n", tmp.token->type);
+			printf("is_bq = %i\n\n", data.is_bq[i]);
+			tmp.token = tmp.token->next;
+			i++;
+		}
+	//	free_bf_newprompt(&data);
+	//}
+	exit_free(&data, 0); //tmp
+}

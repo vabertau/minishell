@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 13:33:51 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/19 13:49:52 by vabertau         ###   ########.fr       */
+/*   Created: 2024/04/19 13:59:10 by vabertau          #+#    #+#             */
+/*   Updated: 2024/04/19 14:01:49 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	checks(t_data *data)
+/*
+Take the tokens and organize them in a structure containing all the elements necessary to execve
+*/
+void	parser(t_data *data)
 {
-	check_unclosedq(data);
-	check_schar_error(data);
-	check_pipe_ext(data);
+	nb_cmd(data);
 }

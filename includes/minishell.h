@@ -28,6 +28,7 @@ typedef struct s_data{
 	int		nb_tokens;
 	int		nb_sq;
 	int		nb_dq;
+	int		nb_cmd;
 	t_token	*token;
 	t_type type;
 	bool	*is_bq;
@@ -47,6 +48,7 @@ int		check_unclosedq(t_data *data);
 void	parsing_error(t_data *data);
 void	checks(t_data *data);
 void	check_schar_error(t_data *data);
+void	check_pipe_ext(t_data *data);
 
 // ====== LEXER ======
 
@@ -61,6 +63,11 @@ char	**ft_quotesplit(t_data *data, char const *s);
 void    copy_bet_sq(int *i, int *j, const char *s, char *tmp);
 void    copy_bet_dq(int *i, int *j, const char *s, char *tmp);
 void    fill_types(t_data *data);
+
+// ===== PARSER =====
+
+void	nb_cmd(t_data *data);
+void	parser(t_data *data);
 
 // ====== EXIT ======
 
