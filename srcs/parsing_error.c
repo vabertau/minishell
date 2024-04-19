@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   parsing_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 17:29:29 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/19 11:51:08 by vabertau         ###   ########.fr       */
+/*   Created: 2024/04/19 11:46:55 by vabertau          #+#    #+#             */
+/*   Updated: 2024/04/19 11:47:59 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	lexer(t_data *data)
+void	parsing_error(t_data *data)
 {
-	spaces_bet_tokens(data);
-	check_unclosedq(data);
-	nb_tokens(data);
-	malloc_tokens(data);
-	fill_tokens(data);
-	fill_types(data);
+	ft_printf("Parsing error\n");
+	exit_free(data, -1);
 }

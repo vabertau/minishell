@@ -4,7 +4,7 @@ CC = cc $(FLAGS) -g
 
 FLAGS = -Wall -Werror -Wextra
 
-FILENAMES = main.c get_input.c lexer.c nb_tokens.c spaces_bet_tokens.c exit_free.c skip_q.c malloc_tokens.c init_data.c fill_tokens.c ft_quotesplit.c copy_bet_q.c fill_types.c
+FILENAMES = main.c get_input.c lexer.c nb_tokens.c spaces_bet_tokens.c exit_free.c skip_q.c malloc_tokens.c init_data.c fill_tokens.c ft_quotesplit.c copy_bet_q.c fill_types.c check_unclosedq.c parsing_error.c
 
 SRCS = $(addprefix srcs/, $(FILENAMES))
 
