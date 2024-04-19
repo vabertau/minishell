@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 17:29:29 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/19 13:33:46 by vabertau         ###   ########.fr       */
+/*   Created: 2024/04/19 13:33:51 by vabertau          #+#    #+#             */
+/*   Updated: 2024/04/19 13:34:46 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	lexer(t_data *data)
+void	checks(t_data *data)
 {
-	spaces_bet_tokens(data);
-	checks(data);
-	nb_tokens(data);
-	malloc_tokens(data);
-	fill_tokens(data);
-	fill_types(data);
+	check_unclosedq(data);
+	check_schar_error(data);
 }

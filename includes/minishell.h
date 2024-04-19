@@ -41,6 +41,13 @@ void	get_input(t_data *data);
 
 void	init_data(t_data *data);
 
+// ===== CHECKER =====
+
+int		check_unclosedq(t_data *data);
+void	parsing_error(t_data *data);
+void	checks(t_data *data);
+void	check_schar_error(t_data *data);
+
 // ====== LEXER ======
 
 void	lexer(t_data *data);
@@ -54,8 +61,6 @@ char	**ft_quotesplit(t_data *data, char const *s);
 void    copy_bet_sq(int *i, int *j, const char *s, char *tmp);
 void    copy_bet_dq(int *i, int *j, const char *s, char *tmp);
 void    fill_types(t_data *data);
-int		check_unclosedq(t_data *data);
-void	parsing_error(t_data *data);
 
 // ====== EXIT ======
 
