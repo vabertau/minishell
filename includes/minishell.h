@@ -23,6 +23,12 @@ typedef struct s_token{
 	struct s_token		*next;
 }				t_token;
 
+typedef struct s_cmd{
+	char			*full_cmd;
+	char			**split_cmd;
+	struct s_cmd	*next;
+}				t_cmd;
+
 typedef struct s_data{
 	char	*cmdline;
 	int		nb_tokens;

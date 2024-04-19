@@ -19,6 +19,9 @@ OK Pipe last token
 
 OK Wrong following characters
 
+| |
+
+
 1) Lexer
 
 // - insert_spaces: insert spaces between the tokens (echo>infile becomes echo > infile)
@@ -77,7 +80,15 @@ count_pipes_and_commands: counts the number of pipes using types
 
 init_cmd; is malloc and init commands structure with the nb of commands.
 
-create_cmd: fills cmd structure
+create_cmd: fills cmd structure:
+typedef struct s_cmd{
+	char *full_cmd;
+	char **split_cmd;
+	t_token
+	struct s_cmd *next;
+}
+
+}
 In that function:
 
 	get_cmdlines_in_nodes
