@@ -6,11 +6,15 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:50:24 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/22 16:30:50 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/22 19:03:50 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+/*
+Fills full_command in exec struct. Full command will be used in exec.
+*/
 
 void	fill_full_cmd(t_data *data)
 {
