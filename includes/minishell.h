@@ -23,11 +23,11 @@ typedef struct s_token{
 	struct s_token		*next;
 }				t_token;
 
-typedef struct s_cmd{
+typedef struct s_exec{
 	char			*full_cmd;
 	char			**split_cmd;
-	struct s_cmd	*next;
-}				t_cmd;
+	struct s_exec	*next;
+}				t_exec;
 
 typedef struct s_data{
 	char	*cmdline;
@@ -37,6 +37,7 @@ typedef struct s_data{
 	int		nb_cmd;
 	t_token	*token;
 	t_type type;
+	t_exec	*exec;
 	bool	*is_bq;
 }				t_data;
 
@@ -74,6 +75,8 @@ void    fill_types(t_data *data);
 
 void	nb_cmd(t_data *data);
 void	parser(t_data *data);
+void	malloc_exec(t_data *data);
+void	fill_full_cmd(t_data *data);
 
 // ====== EXIT ======
 

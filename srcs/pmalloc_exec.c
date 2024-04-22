@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   pmalloc_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 13:59:10 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/22 13:37:59 by vabertau         ###   ########.fr       */
+/*   Created: 2024/04/22 12:52:51 by vabertau          #+#    #+#             */
+/*   Updated: 2024/04/22 13:44:06 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 /*
-Take the tokens and organize them in a structure containing all the elements necessary to execve
+malloc t_exec strucuture with the nb_cmd calculated before, to fill it after
 */
-void	parser(t_data *data)
+void	malloc_exec(t_data *data)
 {
-	nb_cmd(data);
-	malloc_exec(data);
-	fill_full_cmd(data);
+	t_exec *tmp;
+	int		i;
+
+	i = 0;
+	data->exec = malloc(sizeof(t_exec));
+	if (!data->exec)
+		exit_free(data, -1);
+	tmp = data->exec;
+	tmp->full_cmd = NULL;
+	while (i < data->nb_cmd)
+	{
+		tmp->next = malloc(sizeof(t_exec));
+		if (!tmp->next)
+			exit_free(data, -1);
+		tmp->full_cmd = NULL;
+		tmp = tmp->next;
+		i++;
+	}
+	tmp->next = NULL;
 }

@@ -89,8 +89,9 @@ typedef struct s_cmd{
 }
 
 }
+
 In that function:
 
-	get_cmdlines_in_nodes
+	fill_full_cmd fills char *full_cmd with full commands
 
 
