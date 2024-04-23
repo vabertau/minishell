@@ -93,5 +93,7 @@ typedef struct s_cmd{
 In that function:
 
 	fill_full_cmd fills char *full_cmd with full commands
+	fill_split_cmd fills every node of exec with the command splitted by word, without redir and infiles\outfiles
+	fill_redir
 
 
