@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:50:24 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/23 13:00:47 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:28:44 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,35 @@
 Fills full_command in exec struct. Full command will be used in exec.
 ft_strdup for first word, then using ft_strjoin to add space and then to add next word
 */
+
+static char	*ft_strfreejoin(char *s1, char const *s2)
+{
+	char	*ret;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!ret)
+		return (NULL);
+	while (s1[i])
+	{
+		ret[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		ret[i] = s2[j];
+		i++;
+		j++;
+	}
+	ret[i] = '\0';
+	free(s1);
+	return (ret);
+}
 
 void	fill_full_cmd(t_data *data)
 {
@@ -38,10 +67,10 @@ void	fill_full_cmd(t_data *data)
 			}
 			else
 			{
-				tmp_exec->full_cmd = ft_strjoin(tmp_exec->full_cmd, " ");
+				tmp_exec->full_cmd = ft_strfreejoin(tmp_exec->full_cmd, " ");
 				if (tmp_exec->full_cmd == NULL)
 					exit_free(data, -1);
-				tmp_exec->full_cmd = ft_strjoin(tmp_exec->full_cmd, tmp_token->word);
+				tmp_exec->full_cmd = ft_strfreejoin(tmp_exec->full_cmd, tmp_token->word);
 				if (tmp_exec->full_cmd == NULL)
 					exit_free(data, -1);
 			}
