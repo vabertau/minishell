@@ -77,6 +77,7 @@ void	nb_cmd(t_data *data);
 void	parser(t_data *data);
 void	malloc_exec(t_data *data);
 void	fill_full_cmd(t_data *data);
+void	fill_split_cmd(t_data *data);
 
 // ====== EXIT ======
 

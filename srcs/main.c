@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:54:44 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/22 13:49:27 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:55:35 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,111 @@ int	main(int argc, char **argv, char **envp)
 }
 */
 // ===== TEST MALLOC EXEC & FILL_FULL_CMD =====
+/*
+int	main(int argc, char **argv, char **envp)
+{
+	t_data	data;
+	t_data	tmp;
+	t_exec	*tmp_exec;
+	t_type	test_type;
+	int		i;
+
+	(void)argc;
+	(void)argv;
+	(void)envp;
+	i = 0;
+	//while (1)
+	//{
+		init_data(&data);
+		get_input(&data);
+		lexer(&data);
+		parser(&data);
+		printf("cmdline = %s\n\n", data.cmdline);
+		printf("nb tokens = %i\n\n", data.nb_tokens);
+		printf("nb_cmd = %i\n\n", data.nb_cmd);
+		tmp = data;
+		test_type = WORD;
+		while (tmp.token != NULL)
+		{
+			printf("word = %s\n", tmp.token->word);
+			printf("type = %u\n", tmp.token->type);
+			printf("is_bq = %i\n\n", data.is_bq[i]);
+			tmp.token = tmp.token->next;
+			i++;
+		}
+		i = 0;
+		tmp_exec = data.exec;
+		while (i < data.nb_cmd)
+		{
+			printf("full cmd = %s\n", tmp_exec->full_cmd);
+			tmp_exec = tmp_exec->next;
+			i++;
+		}
+	//	free_bf_newprompt(&data);
+	//}
+	exit_free(&data, 0); //tmp
+}
+*/
+
+// ========== TEST FILL FULL CMD  LLDB ===========
+/*
+int	main(int argc, char **argv, char **envp)
+{
+	t_data	data;
+	t_data	tmp;
+	t_exec	*tmp_exec;
+	t_type	test_type;
+	int		i;
+
+	(void)argc;
+	(void)argv;
+	(void)envp;
+	i = 0;
+	//while (1)
+	//{
+		init_data(&data);
+		//get_input(&data);
+		data.cmdline = ft_strdup("test1 test2 | test3 test4");
+		lexer(&data);
+		parser(&data);
+		printf("cmdline = %s\n\n", data.cmdline);
+		printf("nb tokens = %i\n\n", data.nb_tokens);
+		printf("nb_cmd = %i\n\n", data.nb_cmd);
+		tmp = data;
+		test_type = WORD;
+		while (tmp.token != NULL)
+		{
+			printf("word = %s\n", tmp.token->word);
+			printf("type = %u\n", tmp.token->type);
+			printf("is_bq = %i\n\n", data.is_bq[i]);
+			tmp.token = tmp.token->next;
+			i++;
+		}
+		i = 0;
+		tmp_exec = data.exec;
+		while (i < data.nb_cmd)
+		{
+			printf("full cmd = %s\n", tmp_exec->full_cmd);
+			tmp_exec = tmp_exec->next;
+			i++;
+		}
+		tmp_exec = data.exec;
+		while (tmp_exec != NULL)
+		{
+			i = 0;
+			while (tmp_exec->split_cmd[i] != NULL)
+			{
+				printf("split cmd = %s\n", tmp_exec->split_cmd[i]);
+				i++;
+			}
+			tmp_exec = tmp_exec->next;
+		}
+	//	free_bf_newprompt(&data);
+	//}
+	exit_free(&data, 0); //tmp
+}
+*/
+// ========== TEST FILL FULL CMD  LLDB ===========
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -349,6 +454,18 @@ int	main(int argc, char **argv, char **envp)
 			printf("full cmd = %s\n", tmp_exec->full_cmd);
 			tmp_exec = tmp_exec->next;
 			i++;
+		}
+		tmp_exec = data.exec;
+		i = 0;
+		while (tmp_exec != NULL)
+		{
+			i = 0;
+			while (tmp_exec->split_cmd[i] != NULL)
+			{
+				printf("split cmd = %s\n", tmp_exec->split_cmd[i]);
+				i++;
+			}
+			tmp_exec = tmp_exec->next;
 		}
 	//	free_bf_newprompt(&data);
 	//}

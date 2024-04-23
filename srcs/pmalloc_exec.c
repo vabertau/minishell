@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:52:51 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/22 13:44:06 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:49:23 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ void	malloc_exec(t_data *data)
 		exit_free(data, -1);
 	tmp = data->exec;
 	tmp->full_cmd = NULL;
-	while (i < data->nb_cmd)
+	tmp->split_cmd = NULL;
+	while (i < data->nb_cmd - 1)
 	{
 		tmp->next = malloc(sizeof(t_exec));
 		if (!tmp->next)
 			exit_free(data, -1);
 		tmp->full_cmd = NULL;
+		tmp->split_cmd = NULL;
 		tmp = tmp->next;
 		i++;
 	}
