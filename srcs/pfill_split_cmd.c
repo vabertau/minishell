@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 19:04:19 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 12:50:29 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:05:48 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	malloc_split_cmd(t_data *data)
 			j++;
 		if (tmp_token->type == PIPE || (i + 1) == data->nb_tokens) // last condition to fix to find if last word
 		{
-			tmp_exec->split_cmd = malloc(sizeof(char *) * (j + 1));
+			tmp_exec->split_cmd = malloc(sizeof(char *) * (j + 1)); //CHECKED
 			if (!tmp_exec->split_cmd)
 				exit_free(data, -1);
 			j = 0;

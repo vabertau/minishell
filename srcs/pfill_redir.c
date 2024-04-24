@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:47:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 15:50:44 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:04:46 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ void	malloc_redir(t_data *data)
 		{
 			if (j == 0)
 			{
-				tmp_exec->redir = malloc(sizeof(t_token));
+				tmp_exec->redir = malloc(sizeof(t_token)); //CHECKED
 				if (!tmp_exec->redir)
 					exit_free(data, -1);
 				tmp_redir = tmp_exec->redir->next;
 			}
 			else
 			{
-				tmp_redir = malloc(sizeof(t_token));
+				tmp_redir = malloc(sizeof(t_token)); // CHECKED
 				if (!tmp_redir)
 					exit_free(data, -1);
 				tmp_redir = tmp_redir->next;
