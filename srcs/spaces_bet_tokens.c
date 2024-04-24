@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:48:08 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 16:31:19 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:35:04 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ char	*add_space(char *cmdline, t_data *data)
 		i += skip_dq(&(ret[i]));
 		if (ret[i] == '<' || ret[i] == '>' || ret[i] == '|')
 		{
-			tmp = ft_strdup(ret);
+			tmp = ft_strdup(ret); //CHECKED
 			if (!tmp)
-				exit_free(data, -1);
+				return (free(ret), exit_free(data, -1), NULL);
 			add_space_bf_af(i, ret, tmp);
 			free(tmp);
 		}

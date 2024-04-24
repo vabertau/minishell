@@ -101,7 +101,5 @@ In that function:
 
 FIXES TO DO
 
-Initialization of data is done : check for initialization of values inside of data
-for quitting from amywhere when a malloc fails
+bug sur >| voir comment gerer
 
-Tester les malloc rates avec free(ptr) et ptr = NULL dans le code
