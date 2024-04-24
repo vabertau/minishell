@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:50:24 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 15:48:10 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:57:53 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ static char	*ft_strfreejoin(char *s1, char const *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1)); // NOT PROTECTED
-	//free(ret);
-	//ret = NULL;
+	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1)); // CHECKED
 	if (!ret)
-		return (NULL);
+		return (free(s1), NULL);
 	while (s1[i])
 	{
 		ret[i] = s1[i];
@@ -79,7 +77,9 @@ void	fill_full_cmd(t_data *data)
 		{
 			if (tmp_exec->full_cmd == NULL)
 			{
-				tmp_exec->full_cmd = ft_strdup(tmp_token->word);
+				tmp_exec->full_cmd = ft_strdup(tmp_token->word); //not protected
+				//free(tmp_exec);
+				//tmp_exec = NULL;
 				if (tmp_exec->full_cmd == NULL)
 					exit_free(data, -1);
 			}

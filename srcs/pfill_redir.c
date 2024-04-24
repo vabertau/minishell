@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:47:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 15:41:26 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:50:44 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,6 @@ void	nb_redir(t_data *data)
 		}
 		i++;
 		tmp_token = tmp_token->next;
-	}
-}
-
-/*
-Init the word value with NULL : useful if there are no redirections, it will be = NULL
-*/
-void	init_redir(t_data *data)
-{
-	t_exec	*tmp_exec;
-	int		i;
-
-	i = 0;
-	tmp_exec = data->exec;
-	while (i < data->nb_cmd)
-	{
-		tmp_exec->redir = NULL;
-		tmp_exec = tmp_exec->next;
-		i++;
 	}
 }
 
@@ -116,7 +98,6 @@ void	fill_redir(t_data *data)
 	i = 0;
 	j = 0;
 	nb_redir(data);
-	init_redir(data);
 	malloc_redir(data);
 	tmp_exec = data->exec;
 	tmp_token = data->token;
