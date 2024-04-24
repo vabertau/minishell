@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:52:51 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 16:08:38 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:28:42 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	malloc_exec(t_data *data)
 	tmp = data->exec;
 	tmp->full_cmd = NULL;
 	tmp->split_cmd = NULL;
+	tmp->redir = NULL;
 	while (i < data->nb_cmd - 1)
 	{
-		tmp->next = malloc(sizeof(t_exec)); // BAD PROTECTION
-		//free(tmp->next);
-		//tmp->next = NULL;
+		tmp->next = malloc(sizeof(t_exec)); // CHECKED
 		if (!tmp->next)
 			exit_free(data, -1);
 		tmp->full_cmd = NULL;
 		tmp->split_cmd = NULL;
+		tmp->redir = NULL;
 		tmp = tmp->next;
 		i++;
 	}

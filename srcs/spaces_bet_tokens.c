@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:48:08 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/12 14:05:33 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:31:19 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*add_space(char *cmdline, t_data *data)
 	char	*ret;
 
 	i = 0;
-	ret = malloc(sizeof(char) * (fixed_cmdline_len(cmdline) + 1));
+	ret = malloc(sizeof(char) * (fixed_cmdline_len(cmdline) + 1)); //CHECKED
 	if (ret == NULL)
 		exit_free(data, -1);
 	ft_strlcpy(ret, cmdline, ft_strlen(cmdline) + 1);
