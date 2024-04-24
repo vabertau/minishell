@@ -1,3 +1,5 @@
+VALGRIND CMD: valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --trace-children=yes --track-origins=yes --suppressions=readline.supp ./minishell
+
 shell->cmdline is filled with cmd line using readline
 
 insert_space
@@ -97,3 +99,7 @@ In that function:
 	fill_redir
 
 
+FIXES TO DO
+
+initialization of redir, etc to NULL to do in the beginning in order for
+program to be able to free from anywhere in case of error

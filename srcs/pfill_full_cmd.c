@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:50:24 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/23 18:28:44 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:18:56 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,21 @@ static char	*ft_strfreejoin(char *s1, char const *s2)
 	return (ret);
 }
 
+static void	init_full_cmd(t_data *data)
+{
+	t_exec	*tmp_exec;
+	int		i;
+
+	i = 0;
+	tmp_exec = data->exec;
+	while (i < data->nb_cmd)
+	{
+		tmp_exec->full_cmd = NULL;
+		tmp_exec = tmp_exec->next;
+		i++;
+	}
+}
+
 void	fill_full_cmd(t_data *data)
 {
 	t_exec	*tmp_exec;
@@ -55,6 +70,7 @@ void	fill_full_cmd(t_data *data)
 	i = 0;
 	tmp_exec = data->exec;
 	tmp_token = data->token;
+	init_full_cmd(data);
 	while (i < data->nb_cmd)
 	{
 		while (tmp_token && tmp_token->type != PIPE)

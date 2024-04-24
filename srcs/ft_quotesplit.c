@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:28:26 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/18 16:14:30 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:01:52 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,10 @@ char	**ft_quotesplit(t_data *data, const char *s)
 		return (NULL);
 	ret = malloc(sizeof(char *) * (nb_chains(s, ' ') + 1));
 	if (!ret)
-		return (NULL);//to mod
+		exit_free(data, -1);
 	data->is_bq = malloc(sizeof(int) * (data->nb_tokens + 1)); //added to watch if quote
-	//protect
+	if (!data->is_bq)
+		exit_free(data, -1);
 	while (s[i])
 	{
 		i = first_nonc(s, ' ', i);
