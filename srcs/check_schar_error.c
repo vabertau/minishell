@@ -6,11 +6,32 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:06:04 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/19 13:38:20 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:28:32 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+/*
+That function is called when a pipe is found. It checks that the next found character is not a pipe,
+skipping spaces.
+*/
+static int	check_if_next_is_pipe(char *cmdline)
+{
+	int		i;
+
+	i = 1;
+	while (cmdline[i])
+	{
+		if (cmdline[i] != ' ' && cmdline[i] != '|')
+			return (0);
+		else if (cmdline[i] == ' ')
+			i++;
+		else if (cmdline[i] == '|')
+			return (1);
+	}
+	return (0);
+}
 
 void	check_schar_error(t_data *data)
 {
@@ -26,7 +47,7 @@ void	check_schar_error(t_data *data)
 		if (cmdline[i] == '\"')
 			i += skip_dq(&(cmdline[i]));
 		if (cmdline[i] == '|')
-			if (cmdline[i + 1] == '|')
+			if (check_if_next_is_pipe(&(cmdline[i])) == 1)
 				parsing_error(data);
 		if ((cmdline[i] == '<' && cmdline[i + 1] == '<' && (cmdline[i + 2] == '<' || cmdline[i + 2] == '>'))
 			|| (cmdline[i] == '>' && cmdline[i + 1] == '>' && (cmdline[i + 2] == '>' || cmdline[i + 2] == '<'))
