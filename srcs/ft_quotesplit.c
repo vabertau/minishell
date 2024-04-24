@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:28:26 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 13:01:52 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:25:34 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static	char	*ft_substr_quotes(t_data *data, char const *s, int *i, int j)
 	int		k;
 
 	k = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	tmp = malloc(sizeof(char) * (ft_strlen(s) + 1)); // CHECKED
 	if (!tmp)
-		exit_free(data, -1);
+		return (NULL);
 	data->is_bq[j] = 0;
 	while (s[*i] && s[*i] != ' ')
 	{
@@ -74,7 +74,9 @@ static	char	*ft_substr_quotes(t_data *data, char const *s, int *i, int j)
 		}
 	}
 	tmp[k] = '\0';
-	ret = ft_strdup(tmp);
+	ret = ft_strdup(tmp); //CHECKED
+	if (!ret)
+		return (free(tmp), NULL);
 	return (free(tmp), ret);
 }
 
@@ -101,20 +103,20 @@ char	**ft_quotesplit(t_data *data, const char *s)
 	j = 0;
 	if (!s)
 		return (NULL);
-	ret = malloc(sizeof(char *) * (nb_chains(s, ' ') + 1));
+	ret = malloc(sizeof(char *) * (nb_chains(s, ' ') + 1)); // CHECKED
 	if (!ret)
 		exit_free(data, -1);
-	data->is_bq = malloc(sizeof(int) * (data->nb_tokens + 1)); //added to watch if quote
+	data->is_bq = malloc(sizeof(int) * (data->nb_tokens + 1)); //added to watch if quote CHECKED
 	if (!data->is_bq)
-		exit_free(data, -1);
+		return (free(ret), exit_free(data, -1), NULL);
 	while (s[i])
 	{
 		i = first_nonc(s, ' ', i);
 		if (!(s[i]))
 			break ;
-		ret[j] = ft_substr_quotes(data, s, &i, j);
+		ret[j] = ft_substr_quotes(data, s, &i, j); // CHECKED
 		if (!ret[j])
-			exit_free(data, -1);
+			return (free(ret), exit_free(data, -1), NULL);
 		j++;
 	}
 	ret[j] = NULL;

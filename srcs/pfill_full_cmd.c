@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:50:24 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 13:18:56 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:48:10 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static char	*ft_strfreejoin(char *s1, char const *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1)); // NOT PROTECTED
+	//free(ret);
+	//ret = NULL;
 	if (!ret)
 		return (NULL);
 	while (s1[i])

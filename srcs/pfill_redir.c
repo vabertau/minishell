@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:47:39 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 13:14:48 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:41:26 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	nb_redir(t_data *data)
 /*
 Init the word value with NULL : useful if there are no redirections, it will be = NULL
 */
-static void	init_redir(t_data *data)
+void	init_redir(t_data *data)
 {
 	t_exec	*tmp_exec;
 	int		i;
