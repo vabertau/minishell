@@ -101,5 +101,7 @@ In that function:
 
 FIXES TO DO
 
-bug sur >| voir comment gerer
+bug sur >| voir comment gerer ou mettre en parsing error
+
+protect from unauthorized operators ; etc
 

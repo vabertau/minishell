@@ -6,7 +6,7 @@
 /*   By: vabertau <vabertau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:06:04 by vabertau          #+#    #+#             */
-/*   Updated: 2024/04/24 13:28:32 by vabertau         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:09:09 by vabertau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,27 @@ static int	check_if_next_is_pipe(char *cmdline)
 	return (0);
 }
 
+void	check_for_append_pipe(t_data *data)
+{
+	int	i;
+	char	*cmdline;
+
+	i = 0;
+	cmdline = data->cmdline;
+	while (cmdline[i])
+	{
+		if (cmdline[i] == '>' || cmdline [i] == '<')
+		{
+			i++;
+			while (cmdline[i] == '>' || cmdline[i] == '<' || cmdline[i] == ' ')
+				i++;
+			if (cmdline[i] == '|')
+				parsing_error(data);
+		}
+		i++;
+	}
+}
+
 void	check_schar_error(t_data *data)
 {
 	int	i;
@@ -54,6 +75,7 @@ void	check_schar_error(t_data *data)
 			|| (cmdline[i] == '>' && cmdline[i + 1] == '<')
 			|| (cmdline[i] == '<' && cmdline[i + 1] == '>'))
 				parsing_error(data);
+		check_for_append_pipe(data);
 		i++;
 	}
 }
